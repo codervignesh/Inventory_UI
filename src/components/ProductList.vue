@@ -85,7 +85,7 @@ input {
 // } */
 
 .image {
-  width: 165px;
+  width: 165px; 
   height: 178px;
     
 }
