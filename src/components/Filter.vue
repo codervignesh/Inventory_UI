@@ -7,20 +7,33 @@
       <hr />
     </div> -->
     <h3>Categories</h3>
-    <div class="filter-group">
+    <!-- <div class="filter-group">
       <label v-for="category in categories" :key="category">
         <input
           type="radio"
           v-model="selectedCategory"
           :value="category"
           name="category"
-          @click="filterProducts"
         />
         {{ category }}
       </label>
     </div>
 
     <hr />
+ -->
+    <div class="filter-group">
+      <label v-for="category in categories" :key="category">
+        <input
+          type="checkbox"
+          v-model="selectedCategories"
+          :value="category"
+          name="category"
+        />
+        {{ category }}
+      </label>
+    </div>
+
+    <hr/>
 
     <h3>Price Range</h3>
     <div class="filter-group">
