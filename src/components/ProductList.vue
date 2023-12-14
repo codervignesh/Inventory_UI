@@ -4,7 +4,7 @@
     <div
       class="product-card"
       v-for="(product, index) in filteredProductsList"
-      :key="index"
+      :key="index" ref="products"
     >
       <img :src="product.image" alt="Product Image" />
       <h4>{{ product.productName }}</h4>

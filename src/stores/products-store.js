@@ -13,7 +13,6 @@ export const useProductsStore = defineStore("products", {
   state: () => ({
     cartList: [],
     categories: ["Laptop", "Phone", "Accessories"],
-    showAll: true,
     filteredProductsList: [],
     // selectedCategories: [],
     productList: [
@@ -267,17 +266,22 @@ export const useProductsStore = defineStore("products", {
         }
       });
     },
-    copyProducts(){
-        this.filteredProductsList = JSON.parse(JSON.stringify(this.productList));
+    copyProducts() {
+      this.filteredProductsList = JSON.parse(JSON.stringify(this.productList));
     },
     filterProductsByCategory(category) {
-      console.log("instore");
-        this.filteredProductsList = this.productList.filter(
+      this.filteredProductsList = this.productList.filter(
         (product) => product.category == category
       );
-      this.showAll = !this.showAll;
-      console.log("this.filteredProductsList:", this.filteredProductsList)
-      console.log("category: ", category)
+      console.log("this.filteredProductsList:", this.filteredProductsList);
+      console.log("category: ", category);
+    },
+    filterProductsByCategoryList(category) {
+      this.filteredProductsList = this.productList.filter(
+        (product) => product.category == category
+      );
+      console.log("this.filteredProductsList:", this.filteredProductsList);
+      console.log("category: ", category);
     },
   },
 });

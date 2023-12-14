@@ -2,8 +2,8 @@ import { mapActions, mapState, mapWritableState } from "pinia";
 import { useProductsStore } from "../../stores/products-store";
 
 export default {
-    mounted(){
-    this.copyProducts()
+  mounted() {
+    this.copyProducts();
   },
   data() {
     return {
@@ -15,20 +15,34 @@ export default {
       brands: ["Adidas", "Puma", "Nike", "Bata"],
     };
   },
+  watch: {
+    selectedCategory: {
+      handler(category) {
+        this.filterProductsByCategory(category);
+        console.log("watch category: ", category);
+      },
+      deep: true,
+    },
+    // selectedCategory : {
+    //   handler(category){
+    //     this.filterProductsByCategoryList(category);
+    //     console.log("watch category: ", category);
+    //   },
+    //   deep: true
+    // }
+  },
   methods: {
     ...mapActions(useProductsStore, [
       "pushToCart",
       "filterProducts",
       "filterProductsByCategory",
-      "copyProducts"
+      "copyProducts",
     ]),
     filterProducts() {
       this.filterProductsByCategory(this.selectedCategory);
     },
-
   },
   computed: {
-    ...mapState(useProductsStore, ["categories", "showAll"]),
+    ...mapState(useProductsStore, ["categories"]),
   },
-
 };

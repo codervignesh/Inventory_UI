@@ -9,7 +9,13 @@
     <h3>Categories</h3>
     <div class="filter-group">
       <label v-for="category in categories" :key="category">
-        <input type="radio" v-model="selectedCategory" :value="category" name="category" @click="filterProducts"/>
+        <input
+          type="radio"
+          v-model="selectedCategory"
+          :value="category"
+          name="category"
+          @click="filterProducts"
+        />
         {{ category }}
       </label>
     </div>
@@ -58,8 +64,7 @@
     </div>
   </div>
 </template>
-<script src="./js/filter.js">
-</script>
+<script src="./js/filter.js"></script>
 
 <style scoped>
 a {
