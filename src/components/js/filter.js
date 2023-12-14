@@ -8,7 +8,7 @@ export default {
   data() {
     return {
       selectedCategories: [],
-      selectedCategory: "Laptop",
+      selectedCategory: "",
       selectedGender: "",
       // categories: ["Category1", "Category2", "Category3"],
       priceRange: ["$0 - $25", "$25 - $50", "$50 - $75"],
@@ -21,21 +21,22 @@ export default {
         this.filterProductsByCategory(category);
         console.log("watch category: ", category);
       },
-      deep: true,
+      immediate: true,
     },
-    // selectedCategory : {
-    //   handler(category){
-    //     this.filterProductsByCategoryList(category);
-    //     console.log("watch category: ", category);
-    //   },
-    //   deep: true
-    // }
+    selectedCategories: {
+      handler(categories) {
+        this.filterProductsByCategoryList(categories);
+        console.log("watch selectedCategories: ", categories);
+      },
+      immediate: true,
+    },
   },
   methods: {
     ...mapActions(useProductsStore, [
       "pushToCart",
       "filterProducts",
       "filterProductsByCategory",
+      "filterProductsByCategoryList",
       "copyProducts",
     ]),
     filterProducts() {

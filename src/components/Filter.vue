@@ -33,7 +33,7 @@
       </label>
     </div>
 
-    <hr/>
+    <hr />
 
     <h3>Price Range</h3>
     <div class="filter-group">

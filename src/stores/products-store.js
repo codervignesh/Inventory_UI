@@ -277,11 +277,23 @@ export const useProductsStore = defineStore("products", {
       console.log("category: ", category);
     },
     filterProductsByCategoryList(category) {
-      this.filteredProductsList = this.productList.filter(
-        (product) => product.category == category
+      if (category.length == 0) this.filteredProductsList = this.productList;
+      else {
+        let arr = [];
+        for (let i = 0; i < this.productList.length; i++) {
+          for (let j = 0; j < category.length; j++) {
+            if (this.productList[i].category == category[j])
+              arr.push(this.productList[i]);
+          }
+        }
+        this.filteredProductsList = arr;
+      }
+
+      console.log(
+        "this.filteredProductsList store:",
+        this.filteredProductsList
       );
-      console.log("this.filteredProductsList:", this.filteredProductsList);
-      console.log("category: ", category);
+      console.log("category store: ", category);
     },
   },
 });
