@@ -1,4 +1,9 @@
 import logo from '@/assets/images/images.png'
+import cartImg from '@/assets/images/cart.webp'
+import addproduct from '@/assets/images/addproduct.png'
+import productImg from '@/assets/images/products.png'
+import { mapActions, mapState, mapWritableState } from "pinia";
+import { useProductsStore } from "../../stores/products-store";
 
 
 export default {
@@ -9,6 +14,9 @@ export default {
           searchColor: 'red',
           fontSize: 18,
           logo: logo,
+          cartImg: cartImg,
+          productImg: productImg,
+          addproduct: addproduct,
           showSearchResult: false,
           searchQuery: '',
       }
@@ -19,5 +27,16 @@ export default {
           this.showSearchResult = this.searchQuery !== '';
           alert('You searched: ' + event.target.value);
         },
+        cart(){
+          this.$router.push("/cart");
+        },
+        product(){
+          this.$router.push("/");
+        }
+    },
+    computed: {
+      ...mapState(useProductsStore, [
+          "cartList"
+      ])
     }
 }  

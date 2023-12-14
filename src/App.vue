@@ -5,7 +5,8 @@
     </div>
     <div class="container">
       <filter-pannel></filter-pannel>
-      <product-list></product-list>
+      <router-view />
+      <!-- <product-list></product-list> -->
 
     </div>
   </div>
