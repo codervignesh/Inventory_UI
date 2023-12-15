@@ -1,11 +1,4 @@
-import iphone from "@/assets/images/iphone.webp";
-import hp from "@/assets/images/hp.jpeg";
-import jiobook from "@/assets/images/jiobook.jpeg";
-import laptop from "@/assets/images/laptop.jpeg";
-import macbook from "@/assets/images/macbook.jpeg";
-import neckband from "@/assets/images/neckband.png";
-import earpods from "@/assets/images/earpods.jpeg";
-import wiredheadphone from "@/assets/images/wiredheadphone.png";
+import edit from "@/assets/images/edit.png";
 
 import { mapActions, mapState, mapWritableState } from "pinia";
 import { useProductsStore } from "../../stores/products-store";
@@ -13,7 +6,7 @@ import { useProductsStore } from "../../stores/products-store";
 export default {
   data() {
     return {
-
+      edit
     };
   },
   methods: {

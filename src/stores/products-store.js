@@ -14,6 +14,7 @@ export const useProductsStore = defineStore("products", {
   state: () => ({
     cartList: [],
     productData: {},
+    cartIsEmpty: 0,
     categories: ["Laptop", "Phone", "Book"],
     categoriesIdList: [{
       id: 1,
@@ -321,12 +322,14 @@ export const useProductsStore = defineStore("products", {
       const createOrderResponse = await services.createOrder(payload)
       const data = await createOrderResponse().json();
       console.log("added to cart: ", data);
+      this.GET_ALL_PRODUCTS();
     },
     async CREATE_PRODUCT(productDetails){
       const payload = productDetails.payload
       const createProductResponse = await services.createProduct(payload)
       const data = await createProductResponse().json();
       console.log("added to inventory: ", data);
+      this.GET_ALL_PRODUCTS();
     },
     async updateProductDetails(payload,id){
       try {
@@ -343,7 +346,7 @@ export const useProductsStore = defineStore("products", {
       } catch (error) {
         console.error(error);
       }
-
+      this.GET_ALL_PRODUCTS();
     },
     async GET_ALL_PRODUCTS(){
       fetch("http://localhost:8081/inventory/products/")

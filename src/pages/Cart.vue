@@ -21,7 +21,7 @@
       </button>
     </div>
     <div class="place-order"></div>
-    <button class="place-order-button" @click="placeOrder(product)">
+    <button class="place-order-button" :class="{showcheckout : cartList.length}"  @click="placeOrder(product)">
       Proceed to checkout
     </button>
   </div>
@@ -56,6 +56,10 @@ a:hover {
   font-size: 18px;
 }
 
+.showcheckout{
+  visibility: hidden;
+}
+
 h3,
 h4 {
   color: #333;
@@ -71,7 +75,7 @@ input {
 }
 
 .right-column {
-  width: 70%;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;

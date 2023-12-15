@@ -6,7 +6,7 @@
       <input type="text" v-model="name" required />
 
       <label for="price">Price:</label>
-      <input type="number" v-model="price" step="0.01" required />
+      <input type="number" v-model="price" step="1" required />
 
       <label for="quantity">Quantity:</label>
       <input type="number" v-model="quantity" required />
@@ -29,8 +29,8 @@
 /* Add your custom styles here */
 
 div {
-  max-width: 600px;
-  margin: 0 auto;
+  width: 550px;
+  margin: 28px auto;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -65,7 +65,7 @@ select {
 }
 
 button {
-  background-color: #4caf50;
+  background-color: #f7ad4d;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -77,7 +77,4 @@ button {
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #45a049;
-}
 </style>

@@ -7,9 +7,8 @@
       ></header-section>
     </div>
     <div class="container">
-      <filter-pannel></filter-pannel>
+      <filter-pannel v-if="isProductPage"></filter-pannel>
       <router-view />
-      <!-- <product-list></product-list> -->
     </div>
   </div>
 </template>

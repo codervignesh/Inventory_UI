@@ -7,7 +7,7 @@
       :key="index"
       ref="products"
     >
-      <img :src="dummyImage" alt="Product Image" />
+      <img :src="dummyImage" class="product-img" alt="Product Image" />
       <h4>{{ product.name }}</h4>
       <p>Price: {{ product.price }}</p>
       <div class="quantity">
@@ -19,10 +19,14 @@
           +
         </button>
       </div>
-      <button class="add-to-cart" @click="addToCart(product)">
-        Add to cart
-      </button>
-      <button @click="editProduct(product)">edit</button>
+      <div class="update-buttons">
+        <button class="add-to-cart" @click="addToCart(product)">
+          Add to cart
+        </button>
+        <!-- <button class="edit-button" @click="editProduct(product)"> -->
+          <img class="edit-icon" :src="edit" @click="editProduct(product)" />
+        <!-- </button> -->
+      </div>
     </div>
   </div>
 
@@ -89,6 +93,7 @@ a:hover {
 h3,
 h4 {
   color: #333;
+  margin-top: auto;
 }
 
 label {
@@ -117,9 +122,14 @@ input {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.product-card img {
+.product-img {
   width: 185px;
   height: 178px;
+}
+
+.edit-icon {
+  width: 20px;
+  height: 20px;
 }
 
 h2 {
@@ -156,13 +166,13 @@ h2 {
 } */
 
 .add-to-cart {
-  background-color: #e1e5eb;
+  background-color: #f7ad4d;
   padding: 10px 15px;
   border: none;
   cursor: pointer;
-  margin: 10px;
   border-radius: 50px;
-  width: 150px;
+  width: 100px;
+  margin: 5px;
 }
 
 .quantity-button {
@@ -171,5 +181,21 @@ h2 {
   cursor: pointer;
   border-radius: 5px;
   margin: 0px 15px;
+}
+
+.edit-button {
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 10px 15px;
+  border-radius: 50px;
+}
+
+.update-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 15px;
 }
 </style>

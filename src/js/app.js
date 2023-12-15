@@ -1,7 +1,6 @@
 import HeaderSection from "@/components/Header.vue";
 import FilterPannel from "@/components/Filter.vue";
 import ProductList from "@/components/ProductList.vue";
-
 export default {
   components: {
     HeaderSection,
@@ -11,14 +10,11 @@ export default {
   methods: {
     alertSearchMessage(message){
       alert(message)
-    }
-    // showProductDetails(product) {
-    //   alert(`Product Name: ${product.productName}\nPrice: ${product.price}`);
-    // },
+    },
   },
-  Computed: {
-    // getClassName() {
-    //   return true ? ‘Active’ : ‘inactive’;
-    // }
+  computed: {
+    isProductPage() {
+      return this.$route.name == "product-list";
+    },
   },
 };
