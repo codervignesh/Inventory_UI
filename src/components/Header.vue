@@ -10,18 +10,20 @@
     <div class="header-nav">
       <nav>
         <button class="nav-button" @click="product">
-            <img class="icon" :src="productImg" alt="cart" />
-            Products</button>
+          <img class="icon" :src="productImg" alt="cart" />
+          Products
+        </button>
         <!-- <a href="/"  style="padding: 0px 50px;" @click="$emit('alert-search', title)">Product List</a> -->
         <!-- <a href=""  style="padding: 0px 50px;" @click="$emit(title)">Add Product</a> -->
-        <button class="nav-button">
-            <img class="icon" :src="addproduct" alt="cart" />
-            Add Product</button>
-        
+        <button class="nav-button" @click="addProduct">
+          <img class="icon" :src="addproduct" alt="cart" />
+          Add Product
+        </button>
+
         <!-- <a href="/cart"  style="padding: 0px 50px;">Cart {{ cartList.length }}</a> -->
         <button class="nav-button" @click="cart">
-            <img class="icon" :src="cartImg" alt="cart" />
-            Cart
+          <img class="icon" :src="cartImg" alt="cart" />
+          Cart
           <sub>{{ cartList.length }}</sub>
         </button>
       </nav>

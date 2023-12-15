@@ -1,13 +1,29 @@
 <template>
   <div class="right-column">
     <div class="clear-cart">
-    <button class="clear-button" @click="clearCart()">Clear Cart</button>
-</div>
-<div class="product-card" v-for="(product, index) in cartList" :key="index">
-      <img :src="product.image" alt="Product Image" />
-      <h4>{{ product.productName }}</h4>
-      <p>Price: {{ product.price }}</p>
+      <button class="clear-button" @click="clearCart()">Clear Cart</button>
     </div>
+    <div class="product-card" v-for="(product, index) in cartList" :key="index">
+      <img :src="dummyImage" alt="Product Image" />
+      <h4>{{ product.name }}</h4>
+      <p>Price: {{ product.price }}</p>
+      <div class="quantity">
+        <button class="quantity-button" @click="decreaseQuantity(product)">
+          -
+        </button>
+        {{ product.quantity }}
+        <button class="quantity-button" @click="increaseQuantity(product)">
+          +
+        </button>
+      </div>
+      <button class="add-to-cart" @click="removeFromCart(product)">
+        Remove
+      </button>
+    </div>
+    <div class="place-order"></div>
+    <button class="place-order-button" @click="placeOrder(product)">
+      Proceed to checkout
+    </button>
   </div>
 
   <!-- <div>
@@ -87,10 +103,41 @@ h2 {
   justify-content: flex-end;
 }
 
+.place-order {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
 .clear-button {
-    margin: 0px 40px;
-    padding: 8px;
-    border-radius: 8px;
-    height: 40px;
+  margin: 0px 40px;
+  padding: 8px;
+  border-radius: 8px;
+  height: 40px;
+}
+
+.place-order-button {
+  margin: 0px 40px;
+  padding: 8px;
+  border-radius: 8px;
+  height: 40px;
+}
+
+.add-to-cart {
+  background-color: #e1e5eb;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+  border-radius: 50px;
+  width: 150px;
+}
+
+.quantity-button {
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 0px 15px;
 }
 </style>

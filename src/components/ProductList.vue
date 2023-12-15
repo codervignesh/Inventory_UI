@@ -4,17 +4,25 @@
     <div
       class="product-card"
       v-for="(product, index) in filteredProductsList"
-      :key="index" ref="products"
+      :key="index"
+      ref="products"
     >
-      <img :src="product.image" alt="Product Image" />
-      <h4>{{ product.productName }}</h4>
+      <img :src="dummyImage" alt="Product Image" />
+      <h4>{{ product.name }}</h4>
       <p>Price: {{ product.price }}</p>
       <div class="quantity">
-          <button class="quantity-button" @click="decreaseQuantity(product)">-</button>
-            {{ product.quantity }}
-          <button class="quantity-button" @click="increaseQuantity(product)">+</button>
-        </div>
-        <button class="add-to-cart" @click="addToCart(product)">Add to cart</button>
+        <button class="quantity-button" @click="decreaseQuantity(product)">
+          -
+        </button>
+        {{ product.quantity }}
+        <button class="quantity-button" @click="increaseQuantity(product)">
+          +
+        </button>
+      </div>
+      <button class="add-to-cart" @click="addToCart(product)">
+        Add to cart
+      </button>
+      <button @click="editProduct(product)">edit</button>
     </div>
   </div>
 
@@ -148,22 +156,20 @@ h2 {
 } */
 
 .add-to-cart {
-    background-color: #e1e5eb;
-    padding: 10px 15px;
-    border: none;
-    cursor: pointer;
-    margin: 10px; 
-    border-radius: 50px;
-    width: 150px;
-  }
+  background-color: #e1e5eb;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+  border-radius: 50px;
+  width: 150px;
+}
 
-  .quantity-button {
-    padding: 5px 10px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    margin: 0px 15px;
-  }
-  
-
-  </style>
+.quantity-button {
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 0px 15px;
+}
+</style>

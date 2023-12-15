@@ -6,16 +6,32 @@ import macbook from "@/assets/images/macbook.jpeg";
 import neckband from "@/assets/images/neckband.png";
 import earpods from "@/assets/images/earpods.jpeg";
 import wiredheadphone from "@/assets/images/wiredheadphone.png";
+import services from "../services/services.js";
 
 import { defineStore } from "pinia";
 
 export const useProductsStore = defineStore("products", {
   state: () => ({
     cartList: [],
-    categories: ["Laptop", "Phone", "Accessories"],
+    productData: {},
+    categories: ["Laptop", "Phone", "Book"],
+    categoriesIdList: [{
+      id: 1,
+      name: "Book",
+    },
+    {
+      id: 4,
+      name: "Laptop",
+    },
+    {
+      id: 8,
+      name: "Phone",
+    }],
     filteredProductsList: [],
-    // selectedCategories: [],
-    productList: [
+    // list: [],
+    productList: [],
+    dummyImage: laptop,
+    productList1: [
       {
         productName: "Samsung A50",
         image: iphone,
@@ -256,6 +272,11 @@ export const useProductsStore = defineStore("products", {
 
       console.log(this.cartList);
     },
+    async popFromCart(product) {
+      this.cartList.pop(product);
+
+      console.log(this.cartList);
+    },
     async clearCartList() {
       this.$state.cartList = [];
     },
@@ -282,7 +303,7 @@ export const useProductsStore = defineStore("products", {
         let arr = [];
         for (let i = 0; i < this.productList.length; i++) {
           for (let j = 0; j < category.length; j++) {
-            if (this.productList[i].category == category[j])
+            if (this.productList[i].category.name == category[j])
               arr.push(this.productList[i]);
           }
         }
@@ -295,5 +316,88 @@ export const useProductsStore = defineStore("products", {
       );
       console.log("category store: ", category);
     },
+    async CREATE_ORDER(orderDetails){
+      const payload = orderDetails.payload
+      const createOrderResponse = await services.createOrder(payload)
+      const data = await createOrderResponse().json();
+      console.log("added to cart: ", data);
+    },
+    async CREATE_PRODUCT(productDetails){
+      const payload = productDetails.payload
+      const createProductResponse = await services.createProduct(payload)
+      const data = await createProductResponse().json();
+      console.log("added to inventory: ", data);
+    },
+    async updateProductDetails(payload,id){
+      try {
+        const response = await services.updateProductDetails(payload.payload,id);
+        if (response.status === 404) {
+          throw new Error("Page not found");
+        } else if (response.status === 500) {
+          throw new Error("Server error");
+        } else if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.error(error);
+      }
+
+    },
+    async GET_ALL_PRODUCTS(){
+      fetch("http://localhost:8081/inventory/products/")
+      .then((response) => {
+        const result = response.json()
+        if(response.status === 200){
+          result.then((data) => {
+            console.log(data)
+            this.productList = data
+            this.filteredProductsList = data
+            console.log("list", this.productList)
+          })
+        }
+      })
+    },
+    async GET_PRODUCT(id){
+      fetch("http://localhost:8081/inventory/products/?productId="+id)
+      .then((response) => {
+        const result = response.json()
+        if(response.status === 200){
+          result.then((data) => {
+            console.log(data)
+            console.log(data)
+            this.productData.id = data[0].id
+            this.productData.name = data[0].name
+            this.productData.price = data[0].price
+            this.productData.quantity = data[0].quantity
+            this.productData.category = data[0].category
+            
+            console.log("list", this.productData)
+          })
+        }
+      })
+    }
+
+
+    // GET_ALL_PRODUCTS(request) {
+    //   console.log("Before Service call");
+    //   const result = services.getAllProducts();
+    //   console.log(result);
+
+    //   result.then((data) => {
+    //         data.then((jsonData) => {
+    //           console.log("jsondata: ", jsonData);
+    //           if (jsonData.status === 200) {
+    //             this.productList = jsonData;
+    //           }
+    //           console.log("List: ", this.productList)
+    //         });
+    //       }, () => {}
+    //     )
+    //     .catch((e) => {});
+
+    //   console.log("After Service call");
+    // },
   },
 });

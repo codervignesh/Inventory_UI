@@ -13,212 +13,10 @@ import { useProductsStore } from "../../stores/products-store";
 export default {
   data() {
     return {
-      //   categoryList: [
-      //     {
-      //       categoryName: "Laptop",
-      //       products: [
-      //         {
-      //           productName: "iPhone",
-      //           image: iphone,
-      //           // image: '@/assets/images/earpods.jpeg',
-      //           price: 100000,
-      //         },
-      //         {
-      //           productName: "HP",
-      //           image: hp,
-      //           price: 50000,
-      //         },
-      //         {
-      //           productName: "Jiobook",
-      //           image: jiobook,
-      //           price: 10000,
-      //         },
-      //         {
-      //           productName: "Laptop",
-      //           image: laptop,
-      //           price: 80000,
-      //         },
-      //         {
-      //           productName: "MacBook",
-      //           image: macbook,
-      //           price: 140000,
-      //         },
-      //         {
-      //           productName: "Neckband",
-      //           image: neckband,
-      //           price: 2000,
-      //         },
-      //         {
-      //           productName: "Earpods",
-      //           image: earpods,
-      //           price: 2400,
-      //         },
-      //         {
-      //           productName: "Wired Headphone",
-      //           image: wiredheadphone,
-      //           price: 500,
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       categoryName: "Phones",
-      //       products: [
-      //         {
-      //           productName: "iPhone",
-      //           image: iphone,
-      //           price: 100000,
-      //         },
-      //         {
-      //           productName: "HP",
-      //           image: hp,
-      //           price: 50000,
-      //         },
-      //         {
-      //           productName: "Jiobook",
-      //           image: jiobook,
-      //           price: 10000,
-      //         },
-      //         {
-      //           productName: "Laptop",
-      //           image: laptop,
-      //           price: 80000,
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       categoryName: "Accessories",
-      //       products: [
-      //         {
-      //           productName: "iPhone",
-      //           image: iphone,
-      //           price: 100000,
-      //         },
-      //         {
-      //           productName: "HP",
-      //           image: hp,
-      //           price: 50000,
-      //         },
-      //         {
-      //           productName: "Jiobook",
-      //           image: jiobook,
-      //           price: 10000,
-      //         },
-      //         {
-      //           productName: "Laptop",
-      //           image: laptop,
-      //           price: 80000,
-      //         },
-      //         {
-      //           productName: "MacBook",
-      //           image: macbook,
-      //           price: 140000,
-      //         },
-      //         {
-      //           productName: "Neckband",
-      //           image: neckband,
-      //           price: 2000,
-      //         },
-      //         {
-      //           productName: "Earpods",
-      //           image: earpods,
-      //           price: 2400,
-      //         },
-      //         {
-      //           productName: "Wired Headphone",
-      //           image: wiredheadphone,
-      //           price: 500,
-      //         },
-      //       ],
-      //     },
-      //   ],
-      //   productList: [
-      //     {
-      //       productName: "iphone",
-      //       image: iphone,
-      //       price: 100000,
-      //     },
-      //     {
-      //       productName: "hp",
-      //       image: hp,
-      //       price: 50000,
-      //     },
-      //     {
-      //       productName: "jiobook",
-      //       image: jiobook,
-      //       price: 10000,
-      //     },
-      //     {
-      //       productName: "laptop",
-      //       image: laptop,
-      //       price: 80000,
-      //     },
-      //     {
-      //       productName: "macbook",
-      //       image: macbook,
-      //       price: 140000,
-      //     },
-      //     {
-      //       productName: "neckband",
-      //       image: neckband,
-      //       price: 2000,
-      //     },
-      //     {
-      //       productName: "earpods",
-      //       image: earpods,
-      //       price: 2400,
-      //     },
-      //     {
-      //       productName: "wiredheadphone",
-      //       image: wiredheadphone,
-      //       price: 500,
-      //     },
-      //     {
-      //       productName: "iphone",
-      //       image: iphone,
-      //       price: 100000,
-      //     },
-      //     {
-      //       productName: "hp",
-      //       image: hp,
-      //       price: 50000,
-      //     },
-      //     {
-      //       productName: "jiobook",
-      //       image: jiobook,
-      //       price: 10000,
-      //     },
-      //     {
-      //       productName: "laptop",
-      //       image: laptop,
-      //       price: 80000,
-      //     },
-      //     {
-      //       productName: "macbook",
-      //       image: macbook,
-      //       price: 140000,
-      //     },
-      //     {
-      //       productName: "neckband",
-      //       image: neckband,
-      //       price: 2000,
-      //     },
-      //     {
-      //       productName: "earpods",
-      //       image: earpods,
-      //       price: 2400,
-      //     },
-      //     {
-      //       productName: "wiredheadphone",
-      //       image: wiredheadphone,
-      //       price: 500,
-      //     },
-      //   ],
+
     };
   },
   methods: {
-    // showProductDetails(product) {
-    //   alert(`Product Name: ${product.productName}\nPrice: ${product.price}`);
-    // },
     decreaseQuantity(product) {
       if (product.quantity > 0) product.quantity -= 1;
     },
@@ -227,18 +25,26 @@ export default {
     },
     addToCart(product) {
       this.pushToCart(product);
+      this.$router.push("/cart");
     },
-    ...mapActions(useProductsStore, ["pushToCart"]),
+    editProduct(product){
+      this.$router.push("/update-product/"+product.id);
+    },
+    ...mapActions(useProductsStore, ["pushToCart", "GET_ALL_PRODUCTS"]),
   },
   computed: {
     ...mapState(useProductsStore, [
       "categoryList",
       "productList",
       "filteredProductsList",
+      "list",
+      "dummyImage"
     ]),
   },
-  mounted() {
+  created() {
     console.log("from ref: ", this.$refs.products);
+
+    this.GET_ALL_PRODUCTS()
   },
 
   //   created(){

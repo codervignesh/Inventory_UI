@@ -1,13 +1,15 @@
 <template>
   <div>
     <div>
-      <header-section :title="'headings'" @alert-search="alertSearchMessage" ></header-section>
+      <header-section
+        :title="'headings'"
+        @alert-search="alertSearchMessage"
+      ></header-section>
     </div>
     <div class="container">
       <filter-pannel></filter-pannel>
       <router-view />
       <!-- <product-list></product-list> -->
-
     </div>
   </div>
 </template>
@@ -21,5 +23,4 @@
   margin-top: 10px;
   display: flex;
 }
-
 </style>
