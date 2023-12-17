@@ -7,8 +7,12 @@
       ></header-section>
     </div>
     <div class="container">
-      <filter-pannel v-if="isProductPage"></filter-pannel>
+      <transition name="fade" mode="out-in">
+        <filter-pannel v-if="isProductPage" key="filterPanel"></filter-pannel>
+      </transition>
+        <transition name="fade" mode="out-in">
       <router-view />
+    </transition>
     </div>
   </div>
 </template>
@@ -21,5 +25,12 @@
 .container {
   margin-top: 10px;
   display: flex;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s; 
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0; 
 }
 </style>

@@ -55,18 +55,6 @@
 
     <hr />
 
-    <h3>Gender</h3>
-    <div class="filter-group">
-      <label>
-        <input type="radio" v-model="selectedGender" value="Male" />
-        Male
-      </label>
-
-      <label>
-        <input type="radio" v-model="selectedGender" value="Female" />
-        Female
-      </label>
-    </div>
     <br />
     <div v-if="selectedGender !== ''">
       <h3>Selected Gender: {{ selectedGender }}</h3>

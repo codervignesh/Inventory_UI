@@ -1,8 +1,9 @@
 <template>
   <div class="right-column">
     <div class="clear-cart">
-      <button class="clear-button" @click="clearCart()">Clear Cart</button>
+      <button class="clear-button" :class="{showcheckout : !cartList.length}" @click="clearCart()">Clear Cart</button>
     </div>
+    <h2 :class="{showcheckout : cartList.length}">Cart is empty</h2>
     <div class="product-card" v-for="(product, index) in cartList" :key="index">
       <img :src="dummyImage" alt="Product Image" />
       <h4>{{ product.name }}</h4>
@@ -21,7 +22,7 @@
       </button>
     </div>
     <div class="place-order"></div>
-    <button class="place-order-button" :class="{showcheckout : cartList.length}"  @click="placeOrder(product)">
+    <button class="place-order-button" :class="{showcheckout : !cartList.length}"  @click="placeOrder(product)">
       Proceed to checkout
     </button>
   </div>
@@ -57,7 +58,7 @@ a:hover {
 }
 
 .showcheckout{
-  visibility: hidden;
+  display: none;
 }
 
 h3,

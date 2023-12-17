@@ -9,19 +9,19 @@
     </div>
     <div class="header-nav">
       <nav>
-        <button class="nav-button" @click="product">
+        <button class="nav-button" @click="product" :class="{higlightTab:isProductsPage}" >
           <img class="icon" :src="productImg" alt="cart" />
           Products
         </button>
         <!-- <a href="/"  style="padding: 0px 50px;" @click="$emit('alert-search', title)">Product List</a> -->
         <!-- <a href=""  style="padding: 0px 50px;" @click="$emit(title)">Add Product</a> -->
-        <button class="nav-button" @click="addProduct">
+        <button class="nav-button" @click="addProduct" :class="{higlightTab:isAddProductsPage}">
           <img class="icon" :src="addproduct" alt="cart" />
           Add Product
         </button>
 
         <!-- <a href="/cart"  style="padding: 0px 50px;">Cart {{ cartList.length }}</a> -->
-        <button class="nav-button" @click="cart">
+        <button class="nav-button" @click="cart" :class="{higlightTab:isCartsPage}">
           <img class="icon" :src="cartImg" alt="cart" />
           Cart
           <sub>{{ cartList.length }}</sub>
@@ -45,6 +45,10 @@
 .header-left {
   display: flex;
   width: 50%;
+}
+
+.higlightTab {
+  background-color: #f7ad4d;
 }
 
 input[type="text"] {
@@ -75,7 +79,7 @@ a:hover {
 }
 
 .nav-button {
-  background-color: #fff;
+  /* background-color: #fff; */
   padding: 10px 15px;
   border: none;
   cursor: pointer;

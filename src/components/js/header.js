@@ -38,5 +38,14 @@ export default {
   },
   computed: {
     ...mapState(useProductsStore, ["cartList"]),
+    isProductsPage() {
+      return this.$route.name == "product-list";
+    },
+    isAddProductsPage() {
+      return this.$route.name == "add-product";
+    },
+    isCartsPage() {
+      return this.$route.name == "cart";
+    },
   },
 };
